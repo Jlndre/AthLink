@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-export default function App() {
+export default function StartupScreen({ navigation }) {
   const scale = useSharedValue(0);
 
   useEffect(() => {
@@ -10,14 +10,13 @@ export default function App() {
       duration: 1500,
       easing: Easing.bounce,
     });
-  
+
     const timeout = setTimeout(() => {
-      navigation.replace('Signup');
+      navigation.replace('Signup'); // ✅ This will work now!
     }, 3000);
-  
+
     return () => clearTimeout(timeout);
   }, []);
-  
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -31,7 +30,7 @@ export default function App() {
 
       <Animated.View style={[styles.logoContainer, animatedStyle]}>
         <Image
-          source={require('./assets/athlink_logo.jpg')} // Make sure your logo is in the assets folder!
+          source={require('../assets/athlink_logo.jpg')} // ✅ Update relative path if in screens folder
           style={styles.logo}
           resizeMode="contain"
         />
