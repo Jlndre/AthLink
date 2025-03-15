@@ -10,10 +10,14 @@ export default function App() {
       duration: 1500,
       easing: Easing.bounce,
     });
-
-    // You can navigate after 3s when navigation is set up
-    // setTimeout(() => { /* navigation.replace('SignupScreen') */ }, 3000);
+  
+    const timeout = setTimeout(() => {
+      navigation.replace('Signup');
+    }, 3000);
+  
+    return () => clearTimeout(timeout);
   }, []);
+  
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
