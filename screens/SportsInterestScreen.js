@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 const sportsList = [
@@ -29,6 +29,9 @@ const sportsList = [
 
 export default function SportsInterestScreen() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { email, firstName, gender, birthday: date } = route.params || {};
+
   const [selectedSports, setSelectedSports] = useState([]);
 
   const toggleSport = (sport) => {
@@ -45,7 +48,13 @@ export default function SportsInterestScreen() {
       return;
     }
 
-    navigation.navigate('ExpertiseLevelScreen', { email, firstName, gender, birthday: date, selectedSports });
+    navigation.navigate('ExpertiseLevelScreen', {
+      email,
+      firstName,
+      gender,
+      birthday: date,
+      selectedSports,
+    });
   };
 
   return (
@@ -53,7 +62,7 @@ export default function SportsInterestScreen() {
       {/* Progress Bar */}
       <View style={styles.progressContainer}>
         <LinearGradient
-          colors={['#FF5F6D', '#FFC371']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBar}
@@ -95,7 +104,11 @@ export default function SportsInterestScreen() {
           disabled={selectedSports.length === 0}
         >
           <LinearGradient
-            colors={selectedSports.length === 0 ? ['#ccc', '#ccc'] : ['#FF416C', '#FF4B2B']}
+            colors={
+              selectedSports.length === 0
+                ? ['#ccc', '#ccc']
+                : ['#1EA364', '#1EA364']
+            }
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.button}
@@ -109,13 +122,41 @@ export default function SportsInterestScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FAFAFA' },
-  progressContainer: { height: 4, backgroundColor: '#eee', width: '100%' },
-  progressBar: { height: 4, width: '80%', borderRadius: 2 },
-  content: { flex: 1, paddingHorizontal: 20, paddingTop: 50 },
-  heading: { fontSize: 28, fontWeight: '700', color: '#333', marginBottom: 10 },
-  subText: { color: '#666', fontSize: 14, marginBottom: 20 },
-  sportsContainer: { alignItems: 'center' },
+  container: {
+    flex: 1,
+    backgroundColor: '#FAFAFA', // Light background
+  },
+  progressContainer: {
+    height: 4,
+    backgroundColor: '#eee',
+    width: '100%',
+  },
+  progressBar: {
+    height: 4,
+    width: '50%', // Assuming this is step 5 or the last step
+    borderRadius: 2,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+  },
+  heading: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#0A1128', // AthLink dark blue
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subText: {
+    color: '#666',
+    fontSize: 14,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  sportsContainer: {
+    alignItems: 'center',
+  },
   sportItem: {
     borderWidth: 1,
     borderColor: '#ccc',
@@ -123,25 +164,35 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     margin: 8,
+    backgroundColor: '#FFF',
   },
   sportItemSelected: {
-    borderColor: '#FF416C',
-    backgroundColor: '#FF416C',
+    borderColor: '#1EA364',
+    backgroundColor: '#1EA364',
   },
   sportText: {
     color: '#333',
     fontSize: 16,
   },
   sportTextSelected: {
-    color: '#fff',
+    color: '#FFF',
     fontWeight: '600',
   },
-  nextButtonContainer: { paddingHorizontal: 20, paddingBottom: 30 },
-  buttonWrapper: { width: '100%' },
+  nextButtonContainer: {
+    paddingHorizontal: 20,
+    paddingBottom: 30,
+  },
+  buttonWrapper: {
+    width: '100%',
+  },
   button: {
     paddingVertical: 16,
     borderRadius: 30,
     alignItems: 'center',
   },
-  buttonText: { color: '#FFF', fontSize: 18, fontWeight: '600' },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: '600',
+  },
 });

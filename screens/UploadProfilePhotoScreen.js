@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   progressBar: {
-    width: '90%',
+    width: '85%',
     height: '100%',
   },
   title: {

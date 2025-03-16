@@ -15,7 +15,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function FirstNameScreen() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { email } = route.params || {}; // Coming from EmailScreen ✅
+  const { email } = route.params || {};
 
   const [firstName, setFirstName] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -30,8 +30,6 @@ export default function FirstNameScreen() {
 
   const handleModalNext = () => {
     setModalVisible(false);
-
-    // Navigate to GenderScreen and pass email + firstName ✅
     navigation.navigate('GenderScreen', { email, firstName });
   };
 
@@ -43,7 +41,7 @@ export default function FirstNameScreen() {
       {/* Progress Bar */}
       <View style={styles.progressContainer}>
         <LinearGradient
-          colors={['#FF5F6D', '#FFC371']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBar}
@@ -72,7 +70,7 @@ export default function FirstNameScreen() {
       <View style={styles.nextButtonContainer}>
         <TouchableOpacity style={styles.buttonWrapper} onPress={handleNext}>
           <LinearGradient
-            colors={['#FF416C', '#FF4B2B']}
+            colors={['#1EA364', '#1EA364']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradientButton}
@@ -97,7 +95,7 @@ export default function FirstNameScreen() {
               onPress={handleModalNext}
             >
               <LinearGradient
-                colors={['#FF416C', '#FF4B2B']}
+                colors={['#1EA364', '#1EA364']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.modalButton}
@@ -128,18 +126,18 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 4,
-    width: '40%', // This shows 40% progress on the bar
+    width: '20%',
     borderRadius: 2,
   },
   content: {
     flex: 1,
     paddingHorizontal: 20,
-    marginTop: 60, // Reduced the space to align better with the email screen
+    marginTop: 60,
   },
   heading: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#333',
+    color: '#0A1128',
     marginBottom: 40,
   },
   input: {
@@ -173,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   nextText: {
-    color: '#fff',
+    color: '#FFF',
     fontSize: 18,
     fontWeight: '600',
   },
@@ -198,7 +196,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#333',
+    color: '#0A1128',
   },
   modalText: {
     fontSize: 16,
@@ -221,7 +219,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   editName: {
-    color: '#333',
+    color: '#1EA364',
     fontSize: 16,
     fontWeight: 'bold',
   },

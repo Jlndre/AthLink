@@ -20,12 +20,10 @@ export default function LocationPermissionScreen() {
         return;
       }
 
-      // ✅ At this point, location access is granted
       let location = await Location.getCurrentPositionAsync({});
       console.log('User location:', location);
 
-      // Navigate to the next screen after location is allowed
-      navigation.navigate('HomeScreen'); // <-- Replace with your actual next screen
+      navigation.navigate('HomeScreen');
     } catch (error) {
       console.log('Location error:', error);
       Alert.alert('An error occurred while fetching location');
@@ -44,7 +42,7 @@ export default function LocationPermissionScreen() {
       {/* Progress Bar */}
       <View style={styles.progressBarBackground}>
         <LinearGradient
-          colors={['#FF416C', '#FF4B2B']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBarFill}
@@ -59,14 +57,14 @@ export default function LocationPermissionScreen() {
 
         {/* Icon in circle */}
         <View style={styles.iconContainer}>
-          <Feather name="map-pin" size={40} color="#FF416C" />
+          <Feather name="map-pin" size={40} color="#1EA364" />
         </View>
       </View>
 
       {/* Allow Button */}
       <TouchableOpacity style={styles.allowButton} onPress={handleAllowLocation}>
         <LinearGradient
-          colors={['#FF416C', '#FF4B2B']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.allowButtonGradient}
@@ -78,7 +76,7 @@ export default function LocationPermissionScreen() {
       {/* Info */}
       <TouchableOpacity onPress={handleInfoPress} style={styles.infoContainer}>
         <Text style={styles.infoText}>How is my location used?</Text>
-        <Feather name="chevron-down" size={18} color="#333" />
+        <Feather name="chevron-down" size={18} color="#0A1128" />
       </TouchableOpacity>
     </View>
   );
@@ -87,7 +85,7 @@ export default function LocationPermissionScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FAFAFA',
   },
   progressBarBackground: {
     height: 4,
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
   },
   progressBarFill: {
     height: '100%',
-    width: '100%', // full progress (or adjust as needed)
+    width: '100%',
   },
   content: {
     flex: 1,
@@ -107,7 +105,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#0A1128',
     textAlign: 'center',
     marginBottom: 15,
   },
@@ -122,9 +120,11 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#E8F5F1', // Softer green-tinted background (optional)
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#1EA364',
   },
   allowButton: {
     paddingHorizontal: 20,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   allowButtonText: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: '600',
   },
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
-    color: '#333',
+    color: '#0A1128',
     marginRight: 5,
     fontWeight: '500',
   },

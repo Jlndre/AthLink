@@ -54,13 +54,13 @@ export default function HomeScreen() {
         />
         <View style={styles.headerButtons}>
           <TouchableOpacity style={styles.iconBtn}>
-            <Feather name="bell" size={24} color="#333" />
+            <Feather name="bell" size={24} color="#0A1128" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconBtn}>
-            <Feather name="sliders" size={24} color="#333" />
+            <Feather name="sliders" size={24} color="#0A1128" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconBtn}>
-            <MaterialIcons name="leaderboard" size={24} color="#333" />
+            <MaterialIcons name="leaderboard" size={24} color="#0A1128" />
           </TouchableOpacity>
         </View>
       </View>
@@ -97,38 +97,29 @@ export default function HomeScreen() {
       <View style={styles.footerMenu}>
         {/* Chat */}
         <TouchableOpacity
-          onPress={() => {
-            console.log('Navigating to ChatScreen');
-            navigation.navigate('ChatScreen');
-          }}
+          onPress={() => navigation.navigate('ChatScreen')}
           style={styles.footerItem}
         >
-          <Feather name="message-circle" size={24} color="#333" />
+          <Feather name="message-circle" size={24} color="#0A1128" />
           <Text style={styles.footerLabel}>Chat</Text>
         </TouchableOpacity>
 
         {/* Community */}
         <TouchableOpacity
-          onPress={() => {
-            console.log('Navigating to CommunityScreen');
-            navigation.navigate('CommunityScreen');
-          }}
+          onPress={() => navigation.navigate('CommunityScreen')}
           style={styles.footerItem}
         >
-          <Feather name="users" size={24} color="#333" />
+          <Feather name="users" size={24} color="#0A1128" />
           <Text style={styles.footerLabel}>Community</Text>
         </TouchableOpacity>
 
         {/* Link (Home) */}
         <TouchableOpacity
-          onPress={() => {
-            console.log('Navigating to HomeScreen');
-            navigation.navigate('HomeScreen');
-          }}
+          onPress={() => navigation.navigate('HomeScreen')}
           style={styles.linkButtonContainer}
         >
           <LinearGradient
-            colors={['#FF416C', '#FF4B2B']}
+            colors={['#1EA364', '#1EA364']}
             style={styles.linkButtonGradient}
           >
             <Feather name="link" size={28} color="#FFF" />
@@ -138,25 +129,19 @@ export default function HomeScreen() {
 
         {/* Explore */}
         <TouchableOpacity
-          onPress={() => {
-            console.log('Navigating to ExploreScreen');
-            navigation.navigate('ExploreScreen');
-          }}
+          onPress={() => navigation.navigate('ExploreScreen')}
           style={styles.footerItem}
         >
-          <Feather name="search" size={24} color="#333" />
+          <Feather name="search" size={24} color="#0A1128" />
           <Text style={styles.footerLabel}>Explore</Text>
         </TouchableOpacity>
 
         {/* Profile */}
         <TouchableOpacity
-          onPress={() => {
-            console.log('Navigating to ProfileScreen');
-            navigation.navigate('ProfileScreen');
-          }}
+          onPress={() => navigation.navigate('ProfileScreen')}
           style={styles.footerItem}
         >
-          <Feather name="user" size={24} color="#333" />
+          <Feather name="user" size={24} color="#0A1128" />
           <Text style={styles.footerLabel}>Profile</Text>
         </TouchableOpacity>
       </View>
@@ -167,7 +152,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FAFAFA',
   },
   header: {
     flexDirection: 'row',
@@ -192,7 +177,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   card: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#FFFFFF',
     borderRadius: 20,
     overflow: 'hidden',
     height: 500,
@@ -211,11 +196,11 @@ const styles = StyleSheet.create({
   cardName: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#0A1128',
   },
   cardInfo: {
     fontSize: 16,
-    color: '#777',
+    color: '#666',
     marginTop: 4,
   },
   footerMenu: {
@@ -225,8 +210,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderTopWidth: 1,
-    borderColor: '#eee',
-    backgroundColor: '#fff',
+    borderColor: '#E5E5E5',
+    backgroundColor: '#FAFAFA',
   },
   footerItem: {
     justifyContent: 'center',
@@ -234,7 +219,7 @@ const styles = StyleSheet.create({
   },
   footerLabel: {
     fontSize: 12,
-    color: '#333',
+    color: '#0A1128',
     textAlign: 'center',
     marginTop: 5,
   },

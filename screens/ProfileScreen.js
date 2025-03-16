@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,14 +9,12 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
 
-  // Dummy user data (replace with Firebase data later)
   const [user, setUser] = useState({
     name: 'Jordan Smith',
     age: 25,
@@ -30,7 +28,6 @@ export default function ProfileScreen() {
 
   const handleLogout = () => {
     Alert.alert('Logout', 'You have been logged out!');
-    // TODO: Firebase sign out + navigate to Startup/Login screen
     navigation.navigate('Startup');
   };
 
@@ -40,7 +37,7 @@ export default function ProfileScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>My Profile</Text>
         <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
-          <Feather name="settings" size={24} color="#333" />
+          <Feather name="settings" size={24} color="#0A1128" />
         </TouchableOpacity>
       </View>
 
@@ -78,23 +75,20 @@ export default function ProfileScreen() {
 
         {/* Buttons */}
         <View style={styles.buttonWrapper}>
+          {/* Edit Profile */}
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, styles.primaryButton]}
             onPress={() => navigation.navigate('EditProfileScreen')}
           >
-            <LinearGradient
-              colors={['#FF416C', '#FF4B2B']}
-              style={styles.buttonGradient}
-            >
-              <Text style={styles.buttonText}>Edit Profile</Text>
-            </LinearGradient>
+            <Text style={styles.primaryButtonText}>Edit Profile</Text>
           </TouchableOpacity>
 
+          {/* Logout */}
           <TouchableOpacity
-            style={[styles.button, { backgroundColor: '#eee' }]}
+            style={[styles.button, styles.logoutButton]}
             onPress={handleLogout}
           >
-            <Text style={[styles.buttonText, { color: '#FF4B2B' }]}>Logout</Text>
+            <Text style={styles.logoutButtonText}>Logout</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -105,18 +99,22 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FAFAFA',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderColor: '#E5E5E5',
+    backgroundColor: '#FFFFFF',
   },
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#333',
+    color: '#0A1128',
   },
   scrollContainer: {
     alignItems: 'center',
@@ -130,26 +128,31 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     borderRadius: 70,
-    borderWidth: 3,
-    borderColor: '#FF416C',
+    borderWidth: 4,
+    borderColor: '#1EA364',
   },
   editIcon: {
     position: 'absolute',
     bottom: 5,
     right: 5,
-    backgroundColor: '#FF416C',
+    backgroundColor: '#1EA364',
     padding: 8,
     borderRadius: 20,
+    shadowColor: '#1EA364',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   name: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#333',
+    color: '#0A1128',
     marginTop: 15,
   },
   sportLevel: {
     fontSize: 16,
-    color: '#777',
+    color: '#666',
     marginTop: 4,
   },
   distance: {
@@ -165,11 +168,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 8,
-    color: '#333',
+    color: '#0A1128',
   },
   bioText: {
     fontSize: 14,
-    color: '#777',
+    color: '#666',
     lineHeight: 20,
   },
   interestsContainer: {
@@ -177,17 +180,17 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   interestBadge: {
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#E8F5F1',
     borderRadius: 20,
     paddingHorizontal: 15,
     paddingVertical: 8,
     margin: 5,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderColor: '#1EA364',
   },
   interestText: {
     fontSize: 14,
-    color: '#333',
+    color: '#0A1128',
   },
   buttonWrapper: {
     width: '90%',
@@ -196,19 +199,26 @@ const styles = StyleSheet.create({
   button: {
     height: 50,
     borderRadius: 30,
-    overflow: 'hidden',
     marginBottom: 15,
-    justifyContent: 'center',
-  },
-  buttonGradient: {
-    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  buttonText: {
+  primaryButton: {
+    backgroundColor: '#1EA364',
+  },
+  primaryButtonText: {
+    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFF',
-    textAlign: 'center',
+  },
+  logoutButton: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#1EA364',
+  },
+  logoutButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1EA364',
   },
 });

@@ -1,75 +1,68 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar, ActivityIndicator, Dimensions } from 'react-native';
 import Animated, { Easing, useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
+
+// Get screen dimensions for responsive sizing
+const { width, height } = Dimensions.get('window');
 
 export default function StartupScreen({ navigation }) {
   const scale = useSharedValue(0);
 
   useEffect(() => {
     scale.value = withTiming(1, {
-      duration: 1500,
-      easing: Easing.bounce,
+      duration: 1200,
+      easing: Easing.out(Easing.exp),
     });
 
     const timeout = setTimeout(() => {
-      navigation.replace('Signup'); // ✅ This will work now!
-    }, 3000);
+      navigation.replace('Signup');
+    }, 2500);
 
     return () => clearTimeout(timeout);
   }, []);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scale.value }],
-    };
-  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#0A1128', '#1EA364']}
+      style={styles.container}
+    >
       <StatusBar barStyle="light-content" />
 
       <Animated.View style={[styles.logoContainer, animatedStyle]}>
         <Image
-          source={require('../assets/athlink_logo.jpg')} // ✅ Update relative path if in screens folder
+          source={require('../assets/athlink_logo.jpg')}
           style={styles.logo}
           resizeMode="contain"
         />
       </Animated.View>
 
-      <Text style={styles.tagline}>Swipe. Match. Play.</Text>
-
-      <Text style={styles.footer}>Loading...</Text>
-    </View>
+      <ActivityIndicator size="large" color="#FFFFFF" style={styles.loader} />
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A1128',
     justifyContent: 'center',
     alignItems: 'center',
   },
   logoContainer: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: width * 2, // 80% of screen width for a bigger logo
+    height: width * 2, // keep it square
+    marginBottom: 50, // more space before the tagline
   },
   logo: {
     width: '100%',
     height: '100%',
   },
-  tagline: {
-    fontSize: 24,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  footer: {
+  loader: {
     position: 'absolute',
     bottom: 50,
-    color: '#FCA311',
-    fontSize: 16,
   },
 });

@@ -6,21 +6,29 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Slider from '@react-native-community/slider'; // Ensure installed!
+import Slider from '@react-native-community/slider';
 
 export default function DistancePreferenceScreen() {
   const navigation = useNavigation();
-  const [distance, setDistance] = useState(10); // Default distance in miles
+  const route = useRoute();
+  const { email, firstName, gender, birthday: date, selectedSports, expertise } = route.params || {};
+
+  const [distance, setDistance] = useState(10);
 
   const handleNext = () => {
     console.log(`Selected distance: ${distance} miles`);
 
-    // You can save distance to Firebase later
-    // saveDistanceToFirebase(distance);
-
-    navigation.navigate('LocationPermissionScreen', {email, firstName, gender, birthday: date, selectedSports, expertise, distance}); // ✅ navigate to UploadProfilePhotoScreen
+    navigation.navigate('LocationPermissionScreen', {
+      email,
+      firstName,
+      gender,
+      birthday: date,
+      selectedSports,
+      expertise,
+      distance,
+    });
   };
 
   return (
@@ -28,7 +36,7 @@ export default function DistancePreferenceScreen() {
       {/* Progress Bar */}
       <View style={styles.progressBarBackground}>
         <LinearGradient
-          colors={['#FF416C', '#FF4B2B']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBarFill}
@@ -53,9 +61,9 @@ export default function DistancePreferenceScreen() {
           minimumValue={1}
           maximumValue={100}
           step={1}
-          minimumTrackTintColor="#FF416C"
+          minimumTrackTintColor="#1EA364"
           maximumTrackTintColor="#ccc"
-          thumbTintColor="#FF416C"
+          thumbTintColor="#1EA364"
           value={distance}
           onValueChange={(value) => setDistance(value)}
         />
@@ -68,7 +76,7 @@ export default function DistancePreferenceScreen() {
       <View style={styles.nextButtonContainer}>
         <TouchableOpacity onPress={handleNext} style={styles.buttonWrapper}>
           <LinearGradient
-            colors={['#FF416C', '#FF4B2B']}
+            colors={['#1EA364', '#1EA364']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradientButton}
@@ -84,7 +92,7 @@ export default function DistancePreferenceScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#FAFAFA', // White background
   },
   progressBarBackground: {
     height: 4,
@@ -92,7 +100,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   progressBarFill: {
-    width: '90%', // Adjusted for ~90% progress
+    width: '75%', // Progress for this step
     height: '100%',
   },
   contentContainer: {
@@ -103,13 +111,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#333',
+    color: '#0A1128', // AthLink dark navy
     marginBottom: 10,
+    textAlign: 'center',
   },
   subText: {
     color: '#666',
     fontSize: 14,
     marginBottom: 40,
+    textAlign: 'center',
   },
   sliderContainer: {
     flexDirection: 'row',

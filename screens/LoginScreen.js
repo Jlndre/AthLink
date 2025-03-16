@@ -39,8 +39,8 @@ export default function LoginScreen({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button}>
-        <FontAwesome name="facebook" size={24} color="#fff" style={styles.icon} />
-        <Text style={styles.buttonText}>Sign in with Facebook</Text>
+        <FontAwesome name="google-" size={24} color="#fff" style={styles.icon} />
+        <Text style={styles.buttonText}>Sign in with Google</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button}>

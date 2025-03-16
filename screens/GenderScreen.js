@@ -6,7 +6,6 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  CheckBox,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
@@ -26,7 +25,6 @@ export default function GenderScreen() {
       return;
     }
 
-    // Example: Navigate to BirthdayScreen or next step
     navigation.navigate('BirthdayScreen', {
       email,
       firstName,
@@ -43,18 +41,16 @@ export default function GenderScreen() {
       {/* Progress Bar */}
       <View style={styles.progressBarBackground}>
         <LinearGradient
-          colors={['#FF416C', '#FF4B2B']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBarFill}
         />
       </View>
 
-      {/* Title */}
       <View style={styles.content}>
         <Text style={styles.title}>What's your gender?</Text>
 
-        {/* Gender Buttons */}
         <TouchableOpacity
           style={[
             styles.genderButton,
@@ -90,14 +86,13 @@ export default function GenderScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Checkbox */}
       <View style={styles.checkboxContainer}>
         <TouchableOpacity
           style={styles.checkbox}
           onPress={() => setShowOnProfile(!showOnProfile)}
         >
           {showOnProfile ? (
-            <Feather name="check-square" size={24} color="#FF416C" />
+            <Feather name="check-square" size={24} color="#1EA364" />
           ) : (
             <Feather name="square" size={24} color="#ccc" />
           )}
@@ -105,11 +100,10 @@ export default function GenderScreen() {
         <Text style={styles.checkboxLabel}>Show my gender on my profile</Text>
       </View>
 
-      {/* Next Button */}
       <View style={styles.nextButtonContainer}>
         <TouchableOpacity style={styles.buttonWrapper} onPress={handleNext}>
           <LinearGradient
-            colors={['#FF416C', '#FF4B2B']}
+            colors={['#1EA364', '#1EA364']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.button}
@@ -132,14 +126,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   progressBarFill: {
-    width: '60%', // 60% for gender screen progress
+    width: '30%',
     height: '100%',
-  },
-  backButton: {
-    position: 'absolute',
-    top: 50,
-    left: 20,
-    zIndex: 10,
   },
   content: {
     flex: 1,
@@ -149,7 +137,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#0A1128',
     marginBottom: 40,
   },
   genderButton: {
@@ -162,7 +150,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   genderButtonSelected: {
-    borderColor: '#FF416C',
+    borderColor: '#1EA364',
   },
   genderButtonText: {
     fontSize: 18,
@@ -170,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   genderButtonTextSelected: {
-    color: '#FF416C',
+    color: '#1EA364',
     fontWeight: 'bold',
   },
   checkboxContainer: {

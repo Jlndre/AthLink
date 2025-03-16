@@ -16,7 +16,7 @@ export default function BirthdayScreen() {
   const { email, firstName, gender } = route.params || {};
 
   const [date, setDate] = useState(new Date(2000, 0, 1));
-  const [showPicker, setShowPicker] = useState(Platform.OS === 'ios'); // iOS shows by default
+  const [showPicker, setShowPicker] = useState(Platform.OS === 'ios');
 
   const handleNext = () => {
     if (!date) {
@@ -24,10 +24,12 @@ export default function BirthdayScreen() {
       return;
     }
 
-    // Pass collected data to the next screen or finish signup
-    console.log({ email, firstName, gender, birthday: date });
-
-    navigation.navigate('SportsInterestScreen', { email, firstName, gender, birthday: date });
+    navigation.navigate('SportsInterestScreen', {
+      email,
+      firstName,
+      gender,
+      birthday: date,
+    });
   };
 
   const onChange = (event, selectedDate) => {
@@ -44,7 +46,7 @@ export default function BirthdayScreen() {
       {/* Progress Bar */}
       <View style={styles.progressContainer}>
         <LinearGradient
-          colors={['#FF5F6D', '#FFC371']}
+          colors={['#1EA364', '#1EA364']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.progressBar}
@@ -59,9 +61,7 @@ export default function BirthdayScreen() {
           activeOpacity={0.8}
           style={styles.dateDisplay}
         >
-          <Text style={styles.dateText}>
-            {date.toDateString()}
-          </Text>
+          <Text style={styles.dateText}>{date.toDateString()}</Text>
         </TouchableOpacity>
 
         <Text style={styles.subText}>
@@ -69,7 +69,6 @@ export default function BirthdayScreen() {
           <Text style={styles.boldText}>You can’t change it later.</Text>
         </Text>
 
-        {/* Date Picker (iOS stays visible, Android shows on tap) */}
         {showPicker && (
           <DateTimePicker
             testID="dateTimePicker"
@@ -86,7 +85,7 @@ export default function BirthdayScreen() {
       <View style={styles.nextButtonContainer}>
         <TouchableOpacity style={styles.buttonWrapper} onPress={handleNext}>
           <LinearGradient
-            colors={['#FF416C', '#FF4B2B']}
+            colors={['#1EA364', '#1EA364']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.button}
@@ -102,7 +101,7 @@ export default function BirthdayScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#FAFAFA', // White background
   },
   progressContainer: {
     height: 4,
@@ -111,19 +110,19 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: 4,
-    width: '60%', // Adjust percentage for progress (example: step 3 of 5)
+    width: '40%', // Slowed progress (this is step 4 of 5, for example)
     borderRadius: 2,
   },
   content: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 50, // Move content up (similar to Email/Name screens)
+    paddingTop: 50,
     alignItems: 'center',
   },
   heading: {
     fontSize: 28,
     fontWeight: '700',
-    color: '#333',
+    color: '#0A1128',
     marginBottom: 30,
     textAlign: 'center',
   },
@@ -134,6 +133,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 10,
     marginBottom: 15,
+    backgroundColor: '#FFF',
   },
   dateText: {
     fontSize: 18,
