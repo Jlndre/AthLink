@@ -6,15 +6,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  Dimensions
 } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Feather, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-
-// Get screen width for dynamic sizing
-const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -50,21 +46,20 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       {/* Header */}
       <View style={styles.header}>
         <Image
           source={require('../assets/athlink_logo.jpg')}
           style={styles.logo}
         />
-        <View style={styles.headerIcons}>
-          <TouchableOpacity style={styles.headerIcon}>
+        <View style={styles.headerButtons}>
+          <TouchableOpacity style={styles.iconBtn}>
             <Feather name="bell" size={24} color="#333" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.headerIcon}>
+          <TouchableOpacity style={styles.iconBtn}>
             <Feather name="sliders" size={24} color="#333" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.headerIcon}>
+          <TouchableOpacity style={styles.iconBtn}>
             <MaterialIcons name="leaderboard" size={24} color="#333" />
           </TouchableOpacity>
         </View>
@@ -77,10 +72,12 @@ export default function HomeScreen() {
           renderCard={(card) => (
             <View style={styles.card}>
               <Image source={{ uri: card.image }} style={styles.cardImage} />
-              <View style={styles.cardInfoContainer}>
-                <Text style={styles.cardName}>{card.name}, {card.age}</Text>
-                <Text style={styles.cardDetails}>{card.distance}</Text>
-                <Text style={styles.cardDetails}>
+              <View style={styles.cardDetails}>
+                <Text style={styles.cardName}>
+                  {card.name}, {card.age}
+                </Text>
+                <Text style={styles.cardInfo}>{card.distance}</Text>
+                <Text style={styles.cardInfo}>
                   {card.sport} • {card.level}
                 </Text>
               </View>
@@ -88,49 +85,79 @@ export default function HomeScreen() {
           )}
           onSwipedRight={onSwipeRight}
           onSwipedLeft={onSwipeLeft}
-          backgroundColor="transparent"
           cardIndex={0}
+          backgroundColor="transparent"
           stackSize={3}
           disableBottomSwipe
           disableTopSwipe
         />
       </View>
 
-      {/* Bottom Menu Bar */}
-      <View style={styles.bottomMenu}>
-        <TouchableOpacity style={styles.menuButton}>
-          <Feather name="message-circle" size={26} color="#333" />
-          <Text style={styles.menuLabel}>Chat</Text>
+      {/* Footer Menu */}
+      <View style={styles.footerMenu}>
+        {/* Chat */}
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Navigating to ChatScreen');
+            navigation.navigate('ChatScreen');
+          }}
+          style={styles.footerItem}
+        >
+          <Feather name="message-circle" size={24} color="#333" />
+          <Text style={styles.footerLabel}>Chat</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuButton}>
-          <Feather name="users" size={26} color="#333" />
-          <Text style={styles.menuLabel}>Community</Text>
+        {/* Community */}
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Navigating to CommunityScreen');
+            navigation.navigate('CommunityScreen');
+          }}
+          style={styles.footerItem}
+        >
+          <Feather name="users" size={24} color="#333" />
+          <Text style={styles.footerLabel}>Community</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.linkButtonContainer}>
+        {/* Link (Home) */}
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Navigating to HomeScreen');
+            navigation.navigate('HomeScreen');
+          }}
+          style={styles.linkButtonContainer}
+        >
           <LinearGradient
             colors={['#FF416C', '#FF4B2B']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.linkButton}
+            style={styles.linkButtonGradient}
           >
             <Feather name="link" size={28} color="#FFF" />
           </LinearGradient>
-          <Text style={styles.menuLabel}>Link</Text>
+          <Text style={styles.footerLabel}>Link</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.menuButton}>
-          <Feather name="search" size={26} color="#333" />
-          <Text style={styles.menuLabel}>Explore</Text>
-        </TouchableOpacity>
-
+        {/* Explore */}
         <TouchableOpacity
-          style={styles.menuButton}
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => {
+            console.log('Navigating to ExploreScreen');
+            navigation.navigate('ExploreScreen');
+          }}
+          style={styles.footerItem}
         >
-          <Feather name="user" size={26} color="#333" />
-          <Text style={styles.menuLabel}>Profile</Text>
+          <Feather name="search" size={24} color="#333" />
+          <Text style={styles.footerLabel}>Explore</Text>
+        </TouchableOpacity>
+
+        {/* Profile */}
+        <TouchableOpacity
+          onPress={() => {
+            console.log('Navigating to ProfileScreen');
+            navigation.navigate('ProfileScreen');
+          }}
+          style={styles.footerItem}
+        >
+          <Feather name="user" size={24} color="#333" />
+          <Text style={styles.footerLabel}>Profile</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -140,37 +167,35 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFF',
   },
   header: {
     flexDirection: 'row',
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingTop: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   logo: {
-    width: 100,
-    height: 30,
+    width: 120,
+    height: 40,
     resizeMode: 'contain',
   },
-  headerIcons: {
+  headerButtons: {
     flexDirection: 'row',
   },
-  headerIcon: {
+  iconBtn: {
     marginLeft: 15,
   },
   swiperContainer: {
     flex: 1,
-    paddingBottom: 80, // Add space for bottom menu
+    marginTop: 10,
   },
   card: {
     backgroundColor: '#FFF',
     borderRadius: 20,
     overflow: 'hidden',
     height: 500,
-    width: width * 0.9,
-    alignSelf: 'center',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 10,
@@ -180,7 +205,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '75%',
   },
-  cardInfoContainer: {
+  cardDetails: {
     padding: 20,
   },
   cardName: {
@@ -188,38 +213,36 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
-  cardDetails: {
+  cardInfo: {
     fontSize: 16,
     color: '#777',
     marginTop: 4,
   },
-  bottomMenu: {
+  footerMenu: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
     borderTopWidth: 1,
     borderColor: '#eee',
-    backgroundColor: '#FFF',
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: 80,
+    backgroundColor: '#fff',
   },
-  menuButton: {
+  footerItem: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  menuLabel: {
-    marginTop: 5,
+  footerLabel: {
     fontSize: 12,
     color: '#333',
+    textAlign: 'center',
+    marginTop: 5,
   },
   linkButtonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  linkButton: {
+  linkButtonGradient: {
     width: 60,
     height: 60,
     borderRadius: 30,

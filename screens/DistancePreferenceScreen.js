@@ -20,7 +20,7 @@ export default function DistancePreferenceScreen() {
     // You can save distance to Firebase later
     // saveDistanceToFirebase(distance);
 
-    navigation.navigate('LocationPermissionScreen'); // ✅ navigate to UploadProfilePhotoScreen
+    navigation.navigate('LocationPermissionScreen', {email, firstName, gender, birthday: date, selectedSports, expertise, distance}); // ✅ navigate to UploadProfilePhotoScreen
   };
 
   return (

@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 // Screens
 import StartupScreen from './screens/StartupScreen';
@@ -18,10 +20,14 @@ import DistancePreferenceScreen from './screens/DistancePreferenceScreen.js';
 import UploadProfilePhotoScreen from './screens/UploadProfilePhotoScreen.js';
 import LocationPermissionScreen from './screens/LocationPermissionScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
+import ChatScreen from './screens/ChatScreen';
+import ExploreScreen from './screens/ExploreScreen.js';
+import ProfileScreen from './screens/ProfileScreen.js';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Startup"
@@ -81,6 +87,12 @@ export default function App() {
           name="BirthdayScreen"
           component={BirthdayScreen}
           options={{ title: '' }}
+        />  
+        
+        <Stack.Screen
+          name="UploadProfilePhotoScreen"
+          component={UploadProfilePhotoScreen}
+          options={{ title: '' }}
         />
 
         {/* Sports Interest */}
@@ -96,6 +108,11 @@ export default function App() {
           component={ExpertiseLevelScreen}
           options={{ title: '' }}
         />
+        <Stack.Screen
+          name="DistancePreferenceScreen"
+          component={DistancePreferenceScreen}
+          options={{ title: '' }}
+      />
 
         <Stack.Screen
           name="LocationPermissionScreen"
@@ -104,22 +121,30 @@ export default function App() {
         />
 
         <Stack.Screen
-          name="DistancePreferenceScreen"
-          component={DistancePreferenceScreen}
-          options={{ title: '' }}
-      />
-
-        <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
-          options={{ title: '' }}
+          options={{ headerShown: false }}
+        />
+        
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ExploreScreen"
+          component={ExploreScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{
+            headerShown: true,
+            title: 'Profile',   // 👈 This sets the header title
+          }}
         />
 
-        <Stack.Screen
-          name="UploadProfilePhotoScreen"
-          component={UploadProfilePhotoScreen}
-          options={{ title: '' }}
-        />
 
         {/* Login */}
         <Stack.Screen

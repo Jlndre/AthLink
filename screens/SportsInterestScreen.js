@@ -45,7 +45,7 @@ export default function SportsInterestScreen() {
       return;
     }
 
-    navigation.navigate('ExpertiseLevelScreen', { selectedSports });
+    navigation.navigate('ExpertiseLevelScreen', { email, firstName, gender, birthday: date, selectedSports });
   };
 
   return (

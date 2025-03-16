@@ -32,7 +32,7 @@ export default function ExpertiseLevelScreen() {
     console.log('Final Data:', expertise);
 
     // Example: Save to Firebase or go to next screen
-    navigation.navigate('DistancePreferenceScreen', { expertise });
+    navigation.navigate('DistancePreferenceScreen', {email, firstName, gender, birthday: date, selectedSports, expertise});
   };
 
   return (
