@@ -1,43 +1,27 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function SignupScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-
-      {/* Logo */}
+      {/* Logo and Slogan */}
       <Text style={styles.logo}>AthLink</Text>
+      <Text style={styles.tagline}>Swipe. Match. Play.</Text>
 
-      {/* Slogan */}
-      <Text style={styles.slogan}>It starts with a Match™</Text>
-
-      {/* Terms Text */}
-      <Text style={styles.termsText}>
-        By tapping "Create Account" or "Sign In", you agree to our{' '}
-        <Text style={styles.link}>Terms</Text>. Learn how we process your data in our{' '}
-        <Text style={styles.link}>Privacy Policy</Text> and{' '}
-        <Text style={styles.link}>Cookies Policy</Text>.
-      </Text>
-
-      {/* Buttons */}
-      <TouchableOpacity
-        style={styles.primaryButton}
-        onPress={() => navigation.navigate('SignupForm')}
+      {/* Create Account Button */}
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={() => navigation.navigate('Email')}
       >
-        <Text style={styles.primaryButtonText}>Create Account</Text>
+        <Text style={styles.buttonText}>Create Account</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.secondaryButton}
+      {/* Sign In Button */}
+      <TouchableOpacity 
+        style={[styles.button, styles.signInButton]} 
         onPress={() => navigation.navigate('Login')}
       >
-        <Text style={styles.secondaryButtonText}>Sign In</Text>
-      </TouchableOpacity>
-
-      {/* Trouble signing in? */}
-      <TouchableOpacity>
-        <Text style={styles.troubleText}>Trouble signing in?</Text>
+        <Text style={[styles.buttonText, styles.signInButtonText]}>Sign In</Text>
       </TouchableOpacity>
     </View>
   );
@@ -46,63 +30,39 @@ export default function SignupScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0A1128', // Deep Blue
+    backgroundColor: '#0A1128',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    paddingHorizontal: 20,
   },
   logo: {
-    fontSize: 48,
-    color: '#FFFFFF',
+    fontSize: 36,
     fontWeight: 'bold',
+    color: '#FFF',
     marginBottom: 10,
   },
-  slogan: {
-    fontSize: 20,
-    color: '#FFFFFF',
-    marginBottom: 40,
+  tagline: {
+    fontSize: 18,
+    color: '#FFF',
+    marginBottom: 60,
   },
-  termsText: {
-    color: '#FFFFFF',
-    fontSize: 12,
-    textAlign: 'center',
-    marginBottom: 30,
-    paddingHorizontal: 10,
-  },
-  link: {
-    textDecorationLine: 'underline',
-    color: '#FCA311', // Gold
-  },
-  primaryButton: {
-    backgroundColor: '#FCA311', // Gold
-    paddingVertical: 15,
+  button: {
+    backgroundColor: '#FF4F5A',
     width: '100%',
-    borderRadius: 30,
+    paddingVertical: 15,
+    borderRadius: 25,
     alignItems: 'center',
     marginBottom: 15,
   },
-  primaryButtonText: {
-    color: '#0A1128', // Dark Blue text
+  buttonText: {
+    color: '#FFF',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
-  secondaryButton: {
-    borderWidth: 2,
-    borderColor: '#FFFFFF',
-    paddingVertical: 15,
-    width: '100%',
-    borderRadius: 30,
-    alignItems: 'center',
-    marginBottom: 20,
+  signInButton: {
+    backgroundColor: '#FFF',
   },
-  secondaryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  troubleText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    textDecorationLine: 'underline',
+  signInButtonText: {
+    color: '#FF4F5A',
   },
 });
